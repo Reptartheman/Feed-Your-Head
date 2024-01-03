@@ -43,6 +43,10 @@ ul {
   margin: 0;
 }
 
+a > img {
+  width: 3rem;
+}
+
 .container {
   margin-top: 10px;
   display: flex;
@@ -59,7 +63,7 @@ ul {
 }
 
 .player {
-  width: 43vw;
+  width: 25rem;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -106,8 +110,8 @@ h1.album-title {
 
 .player-content {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: "left right";
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-areas: "left" "right";
   column-gap: 13px;
   align-items: center;
   justify-content: center;
@@ -117,17 +121,14 @@ h1.album-title {
   grid-area: left;
 }
 
-.left img {
-  width: 20vw;
+.left img, .right img {
+  width: 22rem;
 }
 
 .right {
   grid-area: right;
 }
 
-.right img {
-  width: 20vw;
-}
 
 
 
@@ -176,9 +177,10 @@ button:focus,
   background: #fff;
   border-radius: 5px;
   cursor: pointer;
-  margin: 10px 0;
+  margin-top: 0;
+  margin-bottom: 10px;
   height: 10px;
-  width: 32vw;
+  width: 22rem;
 }
 
 .progress {
@@ -274,7 +276,6 @@ button:focus,
 
 
 .page-footer {
-  margin-top: 20px;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -282,109 +283,12 @@ button:focus,
 
 .page-footer button {
   color: white;
-  font-size: x-large;
   border-radius: 8px;
+  width: 5rem;
 }
 
 .btn-group {
   display: flex;
-  gap: 40px;
+  gap: 16px;
 }
 
-@media (max-width: 768px) {
-  .player,
-  .playlist {
-    width: 300px;
-  }
-
-
-  #playlist-songs {
-    height: 280px;
-    padding: 5px 6px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    scrollbar-color: var(--background-color) var(--secondary-color);
-    scrollbar-width: thin;
-  }
-
-  #playlist-songs::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  #playlist-songs::-webkit-scrollbar-track {
-    background: var(--background-color);
-  }
-
-  #playlist-songs::-webkit-scrollbar-thumb {
-    background: var(--secondary-color);
-  }
-
-  h1 {
-    font-size: 0.813rem;
-  }
-
-  h2 {
-    font-size: 0.75rem;
-  }
-
-  .player-bar,
-  .playlist-bar,
-  .player-content,
-  #playlist-songs {
-    width: 280px;
-  }
-
-  .playlist-song {
-    justify-content: space-between;
-  }
-
-  .playlist-song-title {
-    width: 140px;
-  }
-
-  .playlist-song-artist {
-    width: 40px;
-  }
-
-  .playlist-song-duration > button {
-    padding: 0;
-  }
-
-/*   .player-content {
-    grid-template-areas: "left" "right";
-    grid-template-columns: repeat(1, 1fr);
-    justify-items: center;
-    height: 100%;
-  } */
-
-  #player-album-art {
-    z-index: -100;
-    height: 280px;
-    box-shadow: none;
-    background: #000;
-  }
-
-  #player-album-art img {
-    width: 100%;
-    opacity: 0.6;
-  }
-
-  .player-display-song-artist {
-    padding: 0 10px;
-  }
-
-  .player-display-song-artist > p {
-    white-space: pre-wrap;
-  }
-
-  .player-display {
-    position: absolute;
-    width: 100%;
-    z-index: 1000;
-    background-color: transparent;
-    top: 0;
-    height: 280px;
-    justify-content: space-between;
-    text-align: center;
-  }
-}
