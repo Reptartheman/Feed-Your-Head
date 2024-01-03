@@ -170,7 +170,9 @@ playButton.addEventListener("click", () => {
 });
 progressContainer.addEventListener('click', setProgress);
 progressContainer.addEventListener('mouseup', setProgress);
+progressContainer.addEventListener('mouseup', updateProgress);
 progressContainer.addEventListener('mousedown', setProgress);
+progressContainer.addEventListener('mousedown', updateProgress);
 pauseButton.addEventListener("click",  pauseSong);
 
 nextButton.addEventListener("click", playNextSong);
