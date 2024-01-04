@@ -99,7 +99,7 @@ const shuffle = () => {
   userData.currentSong = null;
   userData.songCurrentTime = 0;
 
-  renderSongs(userData?.songs);
+  //renderSongs(userData?.songs);
   pauseSong();
   setPlayerDisplay();
   setPlayButtonAccessibleText();
@@ -144,7 +144,7 @@ const highlightCurrentSong = () => {
   if (songToHighlight) songToHighlight.setAttribute("aria-current", "true");
 };
 
-const renderSongs = (array) => {
+/* const renderSongs = (array) => {
   const songsHTML = array
     .map((song)=> {
       return `
@@ -160,7 +160,7 @@ const renderSongs = (array) => {
     .join("");
 
   playlistSongs.innerHTML = songsHTML;
-};
+}; */
 
 const setPlayButtonAccessibleText = () => {
   const song = userData?.currentSong || userData?.songs[0];
@@ -210,5 +210,5 @@ setPlayButtonAccessibleText();
     }
 });
 
-renderSongs(userData?.songs);
+//renderSongs(userData?.songs);
 setPlayButtonAccessibleText();
