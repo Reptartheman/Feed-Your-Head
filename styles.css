@@ -84,6 +84,7 @@ a > img {
 
 .parallel-lines {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   row-gap: 6px;
   padding: 0 5px;
@@ -91,8 +92,7 @@ a > img {
 
 .parallel-lines > div {
   height: 2px;
-  width: 100%;
-  min-width: 6vw;
+  width: 4.6vw;
   background-color: var(--highlight-color);
 }
 
