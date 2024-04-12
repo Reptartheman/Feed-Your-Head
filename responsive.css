@@ -1,4 +1,7 @@
 @media only screen and (min-width: 285px) and (max-width: 560px) {
+
+
+  
   [aria-expanded="true"] ~ div.nav-container {
     z-index: 5;
     display: flex;
@@ -8,7 +11,7 @@
     position: absolute;
     right: 21px;
     top: var(--size-50);
-    background-color: #4e1c75;
+    background-color: #4e1c75d6;
     width: 90%;
     height: 90vh;
     box-shadow: 0px 0px 20px rgba(52, 49, 75, 0.1);
