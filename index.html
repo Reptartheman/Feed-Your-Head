@@ -10,12 +10,15 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="http://fxaeberhard.github.io/handdrawn.css/handdrawn.css">
+    <link
+      rel="stylesheet"
+      href="http://fxaeberhard.github.io/handdrawn.css/handdrawn.css"
+    />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./responsive.css" />
     <title>FEED YOUR HEAD</title>
   </head>
-  <body class="from-back blur">
+  <body>
     <header class="header">
       <nav class="navbar nav">
         <button
@@ -24,73 +27,75 @@
           aria-controls="navbarDropdown"
         >
           <span class="hamburger">&#9776;</span>
-        </button> 
+        </button>
         <div class="nav-container from-back">
           <h1>FEED YOUR HEAD</h1>
           <ul class="nav-list">
             <li id="broken">Track 1: BROKEN</li>
             <li id="finalDestination">Track 2: FINAL DESTINATION</li>
-            <li id="blame">Track 3: BLAME <br> <span>FT:  GREG RIVERS & JOEY BATTS</span></li>
+            <li id="blame">
+              Track 3: BLAME <br />
+              <span>FT: GREG RIVERS & JOEY BATTS</span>
+            </li>
             <li id="feedYourHead">Track 4: FEED YOUR HEAD</li>
-            <li class="list-footer">All tracks are recorded, produced, mixed, mastered and written by Jeff Moro. Track 4 features Gannon Ferrell on Guitar.</li>
+            <li class="list-footer">
+              All tracks are recorded, produced, mixed, mastered and written by
+              Jeff Moro. Track 4 features Gannon Ferrell on Guitar.
+            </li>
           </ul>
         </div>
-        </nav>
+      </nav>
     </header>
-   
-      <main class="container">
 
-        <div class="info-container">
-          <p id="title" class="track-title"></p>
-          <p id="artist" class="track-artist">Reptar, the Man</p>
+    <main class="container">
+      <div class="info-container">
+        <p id="title" class="track-title"></p>
+        <p id="artist" class="track-artist">Reptar, the Man</p>
+      </div>
+      <div class="content-container">
+        <div class="vinyl-container">
+          <img class="vinyl" src="assets/images/vinyl.svg" />
         </div>
-            <div class="content-container">
-              <div class="vinyl-container">
-              <img class="vinyl" src="assets/images/vinyl.svg" />
-            </div>
-              <div class="progress-container" id="progress-container">
-                <div class="progress" id="progress"></div>
-              </div>
-              <div class="controls">
-        
-                <button class="previous" id="previous">
-                  <i class="icon-step-backward"></i>
-                </button>
-                <button id="playButton" class="play-button">
-                <!-- <i class="fa-solid fa-circle-play playButton"></i> -->
-                <i class="icon-play"></i>
-              </button>
-              <button class="next" id="next" >
-                <i class="icon-step-forward"></i>
-              </button>
-              </div>
-            </div>
-       
-            
-         <footer>
-          <div class="footer-img-container">
-            <a href="" target="_blank">
-              <button>
-                <i class="icon-instagram"></i><p class="icon-p">instagram</p>
-              </button>
-            </a>
-            <a href="https://github.com/Reptartheman" target="_blank">
-              <button>
-                <i class="icon-github"></i><p class="icon-p">github</p>
-              </button>
-            </a>
-            <a href="" target="_blank">
-              <button>
-                <i class="icon-money"></i><p class="icon-p">venmo</p>
-              </button>
-            </a>
-          </div>
-         </footer>
-            
-         
+        <div class="progress-container" id="progress-container">
+          <div class="progress" id="progress"></div>
+        </div>
+        <div class="controls">
+          <button class="previous" id="previous">
+            <i class="icon-step-backward"></i>
+          </button>
+          <button id="playButton" class="play-button">
+            <!-- <i class="fa-solid fa-circle-play playButton"></i> -->
+            <i class="icon-play"></i>
+          </button>
+          <button class="next" id="next">
+            <i class="icon-step-forward"></i>
+          </button>
+        </div>
+      </div>
 
-
-      </main>
+      <footer>
+        <div class="footer-img-container">
+          <a href="" target="_blank">
+            <button>
+              <i class="icon-instagram"></i>
+              <p class="icon-p">instagram</p>
+            </button>
+          </a>
+          <a href="https://github.com/Reptartheman" target="_blank">
+            <button>
+              <i class="icon-github"></i>
+              <p class="icon-p">github</p>
+            </button>
+          </a>
+          <a href="" target="_blank">
+            <button>
+              <i class="icon-money"></i>
+              <p class="icon-p">venmo</p>
+            </button>
+          </a>
+        </div>
+      </footer>
+    </main>
 
     <script src="./script.js"></script>
   </body>
