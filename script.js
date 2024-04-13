@@ -1,46 +1,43 @@
 const audio = new Audio();
-const controls = document.querySelector('.controls');
 const playButton = document.getElementById('playButton');
 const vinyl = document.getElementsByClassName('vinyl');
 const nextButton = document.getElementById('next');
 const previousButton = document.getElementById('previous');
 const progress = document.getElementById('progress');
 const progressContainer = document.getElementById('progress-container');
+const trackBroken = document.getElementById('broken');
 let isPlaying = false;
-let navbarNav = document.querySelector('.navbar-nav')
-let navbarList = document.getElementById('navbarList');
-let windowWidth = window.innerWidth;
+let navbarList = document.querySelector('.nav-list');
 let hamburgerMenu = document.querySelector('.hamburger');
 const navButton = document.querySelector('button[aria-expanded]');
-const nav = document.getElementById("topNav");
 const allSongs = [
   {
     id: 0,
     title: "Broken",
     artist: "Reptar, the Man",
     duration: "3:49",
-    src: "./music/Broken.wav",
+    src: "./music/Broken.mp3",
   },
   {
     id: 1,
     title: "Final Destination",
     artist: "Reptar, the Man",
     duration: "3:11",
-    src: "./music/Final Destination.wav",
+    src: "./music/Final Destination.mp3",
   },
   {
     id: 2,
     title: "Blame",
     artist: "Reptar, the Man",
     duration: "3:55",
-    src: "./music/Blame.wav",
+    src: "./music/Blame.mp3",
   },
   {
     id: 3,
     title: "Feed Your Head",
     artist: "Reptar, the Man",
     duration: "4:10",
-    src: "./music/Feed Your Head.wav",
+    src: "./music/Feed Your Head.mp3",
   },
 
 ];
@@ -51,6 +48,9 @@ let userData = {
   currentSong: null,
   songCurrentTime: 0,
 };
+
+
+//When the user clicks on the track name in the menu, that song will play
 
 
 function playSong(id) {
@@ -66,6 +66,9 @@ function playSong(id) {
 
   userData.currentSong = song;
 
+
+
+
   document.querySelector('.vinyl-container').classList.add('play');
   playButton.querySelector('i').classList.remove('icon-play');
   playButton.querySelector('i').classList.add('icon-pause');
@@ -76,7 +79,6 @@ function playSong(id) {
   
   setPlayerDisplay();
   audio.play();
-  
 }
 
 
@@ -159,7 +161,7 @@ playButton.addEventListener('click', () => {
 }
 });
 
-function toggleNav(e) {
+function toggleNav() {
   const $navbarToggler = document.querySelector(".navbar-toggler")
   
   const expanded = $navbarToggler.getAttribute('aria-expanded') === 'true' || false;
@@ -171,16 +173,29 @@ function toggleNav(e) {
    
   }
 }
+
+function playSelected() {
+  const songList = navbarList.querySelectorAll('li');
+  const songArray = [];
+  songList.forEach((li, index) => {
+    songArray.push(li.textContent.trim())
+
+    li.addEventListener('click', () => {
+      playSong(index)
+    })
+  })
+}
+
+
+
+playSelected();
 navButton.addEventListener('click', toggleNav);
-
-
 progressContainer.addEventListener('click', setProgress);
 progressContainer.addEventListener('mouseup', setProgress);
 progressContainer.addEventListener('mouseup', updateProgress);
 progressContainer.addEventListener('mousedown', setProgress);
 progressContainer.addEventListener('mousedown', updateProgress);
 audio.addEventListener('timeupdate', updateProgress);
-
 nextButton.addEventListener("click", playNextSong);
 nextButton.addEventListener("touch", playNextSong);
 previousButton.addEventListener("click", playPreviousSong);
