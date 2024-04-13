@@ -37,9 +37,9 @@ ul {
   list-style: none;
 }
 
-ul li:before {
+/* ul li:before {
   content: "";
-}
+} */
 
 .header {
   display: flex;
