@@ -278,7 +278,6 @@ footer {
   }
 }
 
-
 .from-back {
   animation: from-back 2s cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal forwards;
 }
@@ -296,9 +295,6 @@ footer {
 }
 
 @media only screen and (min-width: 285px) and (max-width: 560px) {
-
-
-  
   [aria-expanded="true"] ~ div.nav-container {
     z-index: 5;
     display: flex;
