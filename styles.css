@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+
 :root {
   --size-6: 0.375rem;
   --size-10: 0.625rem;
@@ -24,6 +26,9 @@
 }
 
 body {
+  font-family: "Architects Daughter", cursive;
+  font-weight: 400;
+  font-style: normal;
   background: radial-gradient(
     50% 50% at 50% 50%,
     rgba(30.7, 142.34, 35.16, 0.69) 0%,
@@ -106,7 +111,11 @@ li.list-footer {
 }
 
 .hamburger {
+  font-family: "Architects Daughter", cursive;
+  font-weight: 400;
+  font-style: normal;
   font-size: var(--size-30);
+  color: #ffffff;
 }
 
 [aria-expanded="false"] ~ div.nav-container {
@@ -183,18 +192,27 @@ li.list-footer {
 }
 
 .play-button {
-  font-size: 48px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
   background-color: #7f17ca;
 }
 .play-button:hover {
   background-color: #4e1c75;
 }
 
-.controls button,
-.footer-img-container a > button {
-  border-radius: 46% 50% 44% 49% / 43% 53% 51% 42%;
-  border: 2px solid #a4a4a4;
+.controls-secondary {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: #7f17ca;
 }
+.controls div,
+.footer-img-container a > button {
+  display: flex;
+  justify-content: center;
+}
+
 
 footer {
   margin-top: 70px;

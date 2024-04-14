@@ -10,6 +10,8 @@ let isPlaying = false;
 let navbarList = document.querySelector(".nav-list");
 let hamburgerMenu = document.querySelector(".hamburger");
 const navButton = document.querySelector("button[aria-expanded]");
+const pauseImage = "./assets/images/Pause.svg";
+const playImage = "./assets/images/Play.svg";
 const allSongs = [
   {
     id: 0,
@@ -79,13 +81,17 @@ function playSong(id) {
   nowPlayingElement.classList.add("now-playing");
   navbarList.insertBefore(nowPlayingElement, navbarList.firstChild);
 
-  document.querySelector(".vinyl-container").classList.add("play");
-  playButton.querySelector("i").classList.remove("icon-play");
-  playButton.querySelector("i").classList.add("icon-pause");
   for (let i = 0; i < vinyl.length; i++) {
     vinyl[i].style.animationPlayState = "running";
   }
   isPlaying = true;
+
+  if (isPlaying) {
+    playButton.querySelector('img').src = pauseImage;
+  } else {
+    alert('Something went wrong');
+  }
+
 
   setPlayerDisplay();
   audio.play();
@@ -106,13 +112,19 @@ function pauseSong() {
   userData.songCurrentTime = audio.currentTime;
   document.querySelector(".vinyl-container").classList.remove("play");
 
-  playButton.querySelector("i").classList.add("icon-play");
-  playButton.querySelector("i").classList.remove("icon-pause");
+
   for (let i = 0; i < vinyl.length; i++) {
     vinyl[i].style.animationPlayState = "paused";
   }
 
   isPlaying = false;
+
+  if (!isPlaying) {
+    playButton.querySelector('img').src = playImage;
+  } else {
+    alert('Something went wrong');
+  }
+
   audio.pause();
 }
 
