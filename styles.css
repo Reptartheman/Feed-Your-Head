@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
 
 :root {
+  --main-font: "Architects Daughter", cursive;
   --size-6: 0.375rem;
   --size-10: 0.625rem;
   --size-14: 0.875rem;
@@ -26,7 +27,7 @@
 }
 
 body {
-  font-family: "Architects Daughter", cursive;
+  font-family: var(--main-font);
   font-weight: 400;
   font-style: normal;
   background: radial-gradient(
@@ -81,6 +82,7 @@ ul {
 }
 
 .nav-container h1 {
+  margin-bottom: 0;
   text-align: center;
   font-size: var(--size-30);
   text-decoration: underline;
@@ -104,14 +106,14 @@ ul.nav-list li:nth-child(4) {
   font-size: var(--size-16);
 }
 
-li.list-footer {
+p.list-footer {
   text-align: center;
   font-size: var(--size-16);
-  padding: var(--size-10);
+  padding: var(--size-16);
 }
 
 .hamburger {
-  font-family: "Architects Daughter", cursive;
+  font-family: var(--main-font);
   font-weight: 400;
   font-style: normal;
   font-size: var(--size-30);
@@ -207,8 +209,7 @@ li.list-footer {
   border-radius: 50%;
   background-color: #7f17ca;
 }
-.controls div,
-.footer-img-container a > button {
+.controls div {
   display: flex;
   justify-content: center;
 }
@@ -224,27 +225,30 @@ footer {
 }
 
 .footer-img-container a > button {
-  background-color: #ae5cee;
-  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(91, 232, 78, 0.763);
+  font-size: var(--size-16);
   transition: 0.5ms;
 }
+
+.footer-img {
+  width: 100%;
+}
+
 .footer-img-container a > button:hover {
   background-color: #4e1c75;
 }
 
-.icon-p {
-  margin: 0;
-}
-
-.icon-play,
-.icon-pause {
-  position: relative;
-  top: 8px;
-}
 
 .previous,
 .next {
-  font-size: 30px;
   background-color: #7f17ca;
 }
 .previous:hover,
@@ -252,18 +256,9 @@ footer {
   background-color: #4e1c75;
 }
 
-.icon-step-forward,
-.icon-step-backward {
-  position: relative;
-  top: 5px;
-}
 
-.footer {
-  position: absolute;
-  width: 390px;
-  height: 94px;
-  top: 750px;
-  left: 1px;
+.footer-p {
+  font-family: var(--main-font);
 }
 
 .track-title,
