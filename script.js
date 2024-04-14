@@ -93,7 +93,7 @@ function playSong(id) {
   }
 
 
-  setPlayerDisplay();
+  //setPlayerDisplay();
   audio.play();
 }
 
