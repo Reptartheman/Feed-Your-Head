@@ -129,22 +129,23 @@ function pauseSong() {
 }
 
 function playNextSong() {
-  if (userData?.currentSong === null) {
-    playSong(userData?.songs[0].id);
-  } else {
-    const currentSongIndex = getCurrentSongIndex();
-    const nextSong = userData?.songs[currentSongIndex + 1];
+  const currentSongIndex = getCurrentSongIndex();
+  if (currentSongIndex !== -1 && currentSongIndex < userData.songs.length - 1) {
+    const nextSong = userData.songs[currentSongIndex + 1];
     playSong(nextSong.id);
+  } else {
+    playSong(userData.songs[0].id);
   }
 }
 
 function playPreviousSong() {
-  if (userData?.currentSong === null) return;
-  else {
-    const currentSongIndex = getCurrentSongIndex();
-    const previousSong = userData?.songs[currentSongIndex - 1];
-
+  const currentSongIndex = getCurrentSongIndex();
+  if (currentSongIndex !== -1 && currentSongIndex > 0) {
+    const previousSong = userData.songs[currentSongIndex - 1];
     playSong(previousSong.id);
+  } else {
+    const lastSongIndex = userData.songs.length - 1;
+    playSong(userData.songs[lastSongIndex].id);
   }
 }
 
@@ -154,15 +155,75 @@ function updateProgress(e) {
   const { duration, currentTime } = e.srcElement;
   const progressPercent = (currentTime / duration) * 100;
   progress.style.width = `${progressPercent}%`;
+
+  const elapsedMinutes = Math.floor(currentTime / 60);
+  const elapsedSeconds = Math.floor(currentTime % 60);
+  const formattedElapsed = `${elapsedMinutes}:${elapsedSeconds.toString().padStart(2, '0')}`;
+
+  let remainingTime = duration - currentTime;
+  if (isNaN(remainingTime)) {
+    remainingTime = 0; 
+  }
+  const remainingMinutes = Math.floor(remainingTime / 60);
+  const remainingSeconds = Math.floor(remainingTime % 60);
+  const formattedRemaining = `${remainingMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+
+  const elapsedTimeContainer = document.getElementById('elapsed-time');
+  const remainingTimeContainer = document.getElementById('remaining-time');
+  elapsedTimeContainer.textContent = formattedElapsed;
+  remainingTimeContainer.textContent = `-${formattedRemaining}`;
 }
 
 function setProgress(e) {
   const width = this.clientWidth;
-  const clickX = e.offsetX;
+  let offsetX;
+
+  if (e.type === 'mousedown' || e.type === 'mouseup' || e.type === 'mousemove') {
+    offsetX = e.offsetX;
+  } else if (e.type === 'touchstart' || e.type === 'touchmove' || e.type === 'touchend') {
+    offsetX = e.touches[0].clientX - this.getBoundingClientRect().left;
+  }
+
   const duration = audio.duration;
 
-  audio.currentTime = (clickX / width) * duration;
+  const newTime = (offsetX / width) * duration;
+  audio.currentTime = newTime;
+
+  function moveProgress(e) {
+    let moveX;
+
+    if (e.type === 'mousemove') {
+      moveX = e.offsetX;
+    } else if (e.type === 'touchmove') {
+      moveX = e.touches[0].clientX - this.getBoundingClientRect().left;
+    }
+
+    const newTime = (moveX / width) * duration;
+    audio.currentTime = newTime;
+  }
+
+  function stopMove() {
+    if (e.type === 'mousedown') {
+      progressContainer.removeEventListener('mousemove', moveProgress);
+      progressContainer.removeEventListener('mouseup', stopMove);
+    } else if (e.type === 'touchstart') {
+      progressContainer.removeEventListener('touchmove', moveProgress);
+      progressContainer.removeEventListener('touchend', stopMove);
+    }
+  }
+
+  if (e.type === 'mousedown') {
+    progressContainer.addEventListener('mousemove', moveProgress);
+    progressContainer.addEventListener('mouseup', stopMove);
+  } else if (e.type === 'touchstart') {
+    progressContainer.addEventListener('touchmove', moveProgress);
+    progressContainer.addEventListener('touchend', stopMove);
+  }
 }
+
+progressContainer.addEventListener('mousedown', setProgress);
+progressContainer.addEventListener('touchstart', setProgress);
+
 
 playButton.addEventListener("click", () => {
   if (isPlaying) {
@@ -211,6 +272,7 @@ progressContainer.addEventListener("mouseup", updateProgress);
 progressContainer.addEventListener("mousedown", setProgress);
 progressContainer.addEventListener("mousedown", updateProgress);
 audio.addEventListener("timeupdate", updateProgress);
+audio.addEventListener('ended', playNextSong);
 nextButton.addEventListener("click", playNextSong);
 nextButton.addEventListener("touch", playNextSong);
 previousButton.addEventListener("click", playPreviousSong);

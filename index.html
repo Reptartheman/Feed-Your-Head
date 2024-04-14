@@ -44,13 +44,22 @@
         <p id="title" class="track-title"></p>
         <p id="artist" class="track-artist">Reptar, the Man</p>
       </div>
+
       <div class="content-container">
         <div class="vinyl-container">
           <img class="vinyl" src="assets/images/vinyl.svg" />
         </div>
+
+        <div class="time-container">
+          <div id="elapsed-time" class="time">0:00</div>
+          <div id="remaining-time" class="time">-0:00</div>
+        </div>
+        
         <div class="progress-container" id="progress-container">
           <div class="progress" id="progress"></div>
         </div>
+        
+        
         <div class="controls">
           <div class="previous controls-secondary" id="previous">
             <img src="./assets/images/Previous.svg" alt="previous">
@@ -62,8 +71,9 @@
             <img src="./assets/images/Next.svg" alt="next">
           </div>
         </div>
-      </div>
-
+      
+        </div>
+    </div>
       <footer>
         <div class="footer-img-container">
           <a href="" target="_blank">
