@@ -147,8 +147,8 @@ p.list-footer {
 
 .vinyl {
   position: relative;
-  width: 356px;
-  height: 348px;
+  width: 280px;
+  height: 270px;
 }
 
 .time {
@@ -190,8 +190,8 @@ p.list-footer {
 }
 
 .play-button {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   background-color: #7f17ca;
 }
@@ -200,8 +200,8 @@ p.list-footer {
 }
 
 .controls-secondary {
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-color: #7f17ca;
 }
