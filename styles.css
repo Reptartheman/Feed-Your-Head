@@ -105,6 +105,7 @@ p.list-footer {
   font-style: normal;
   font-size: var(--size-30);
   color: #ffffff;
+  cursor: pointer;
 }
 
 [aria-expanded="false"] ~ div.nav-container {
@@ -195,6 +196,7 @@ p.list-footer {
   height: 90px;
   border-radius: 50%;
   background-color: #7f17ca;
+  cursor: pointer;
 }
 .play-button:hover {
   background-color: #4e1c75;
@@ -205,6 +207,7 @@ p.list-footer {
   height: 60px;
   border-radius: 50%;
   background-color: #7f17ca;
+  cursor: pointer;
 }
 .controls div {
   display: flex;
@@ -233,6 +236,7 @@ footer {
   background-color: rgba(91, 232, 78, 0.763);
   font-size: var(--size-16);
   transition: 0.5ms;
+  cursor: pointer;
 }
 
 .footer-img {

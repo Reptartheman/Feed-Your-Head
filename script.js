@@ -62,6 +62,15 @@ function playSong(id) {
 
   userData.currentSong = song;
 
+  isPlaying = true;
+  if (isPlaying) {
+    playButton.querySelector("img").src = pauseImage;
+  } else {
+    alert("Something went wrong");
+  }
+  setPlayerDisplay();
+  audio.play();
+
   const existingNowPlayingElement = navbarList.querySelector(".now-playing");
   if (existingNowPlayingElement) {
     existingNowPlayingElement.remove();
@@ -84,15 +93,7 @@ function playSong(id) {
   for (let i = 0; i < vinyl.length; i++) {
     vinyl[i].style.animationPlayState = "running";
   }
-  isPlaying = true;
-
-  if (isPlaying) {
-    playButton.querySelector('img').src = pauseImage;
-  } else {
-    alert('Something went wrong');
-  }
-  setPlayerDisplay();
-  audio.play();
+  
 }
 
 function setPlayerDisplay() {
@@ -110,18 +111,18 @@ function pauseSong() {
   userData.songCurrentTime = audio.currentTime;
   document.querySelector(".vinyl-container").classList.remove("play");
 
+  isPlaying = false;
+  if (!isPlaying) {
+    playButton.querySelector("img").src = playImage;
+  } else {
+    alert("Something went wrong");
+  }
 
   for (let i = 0; i < vinyl.length; i++) {
     vinyl[i].style.animationPlayState = "paused";
   }
 
-  isPlaying = false;
 
-  if (!isPlaying) {
-    playButton.querySelector('img').src = playImage;
-  } else {
-    alert('Something went wrong');
-  }
 
   audio.pause();
 }
@@ -156,18 +157,22 @@ function updateProgress(e) {
 
   const elapsedMinutes = Math.floor(currentTime / 60);
   const elapsedSeconds = Math.floor(currentTime % 60);
-  const formattedElapsed = `${elapsedMinutes}:${elapsedSeconds.toString().padStart(2, '0')}`;
+  const formattedElapsed = `${elapsedMinutes}:${elapsedSeconds
+    .toString()
+    .padStart(2, "0")}`;
 
   let remainingTime = duration - currentTime;
   if (isNaN(remainingTime)) {
-    remainingTime = 0; 
+    remainingTime = 0;
   }
   const remainingMinutes = Math.floor(remainingTime / 60);
   const remainingSeconds = Math.floor(remainingTime % 60);
-  const formattedRemaining = `${remainingMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  const formattedRemaining = `${remainingMinutes}:${remainingSeconds
+    .toString()
+    .padStart(2, "0")}`;
 
-  const elapsedTimeContainer = document.getElementById('elapsed-time');
-  const remainingTimeContainer = document.getElementById('remaining-time');
+  const elapsedTimeContainer = document.getElementById("elapsed-time");
+  const remainingTimeContainer = document.getElementById("remaining-time");
   elapsedTimeContainer.textContent = formattedElapsed;
   remainingTimeContainer.textContent = `-${formattedRemaining}`;
 }
@@ -176,9 +181,17 @@ function setProgress(e) {
   const width = this.clientWidth;
   let offsetX;
 
-  if (e.type === 'mousedown' || e.type === 'mouseup' || e.type === 'mousemove') {
+  if (
+    e.type === "mousedown" ||
+    e.type === "mouseup" ||
+    e.type === "mousemove"
+  ) {
     offsetX = e.offsetX;
-  } else if (e.type === 'touchstart' || e.type === 'touchmove' || e.type === 'touchend') {
+  } else if (
+    e.type === "touchstart" ||
+    e.type === "touchmove" ||
+    e.type === "touchend"
+  ) {
     offsetX = e.touches[0].clientX - this.getBoundingClientRect().left;
   }
 
@@ -190,9 +203,9 @@ function setProgress(e) {
   function moveProgress(e) {
     let moveX;
 
-    if (e.type === 'mousemove') {
+    if (e.type === "mousemove") {
       moveX = e.offsetX;
-    } else if (e.type === 'touchmove') {
+    } else if (e.type === "touchmove") {
       moveX = e.touches[0].clientX - this.getBoundingClientRect().left;
     }
 
@@ -201,26 +214,24 @@ function setProgress(e) {
   }
 
   function stopMove() {
-    if (e.type === 'mousedown') {
-      progressContainer.removeEventListener('mousemove', moveProgress);
-      progressContainer.removeEventListener('mouseup', stopMove);
-    } else if (e.type === 'touchstart') {
-      progressContainer.removeEventListener('touchmove', moveProgress);
-      progressContainer.removeEventListener('touchend', stopMove);
+    if (e.type === "mousedown") {
+      progressContainer.removeEventListener("mousemove", moveProgress);
+      progressContainer.removeEventListener("mouseup", stopMove);
+    } else if (e.type === "touchstart") {
+      progressContainer.removeEventListener("touchmove", moveProgress);
+      progressContainer.removeEventListener("touchend", stopMove);
     }
   }
 
-  if (e.type === 'mousedown') {
-    progressContainer.addEventListener('mousemove', moveProgress);
-    progressContainer.addEventListener('mouseup', stopMove);
-  } else if (e.type === 'touchstart') {
-    progressContainer.addEventListener('touchmove', moveProgress);
-    progressContainer.addEventListener('touchend', stopMove);
+  if (e.type === "mousedown") {
+    progressContainer.addEventListener("mousemove", moveProgress);
+    progressContainer.addEventListener("mouseup", stopMove);
+  } else if (e.type === "touchstart") {
+    progressContainer.addEventListener("touchmove", moveProgress);
+    progressContainer.addEventListener("touchend", stopMove);
   }
 }
 
-progressContainer.addEventListener('mousedown', setProgress);
-progressContainer.addEventListener('touchstart', setProgress);
 
 
 playButton.addEventListener("click", () => {
@@ -269,8 +280,9 @@ progressContainer.addEventListener("mouseup", setProgress);
 progressContainer.addEventListener("mouseup", updateProgress);
 progressContainer.addEventListener("mousedown", setProgress);
 progressContainer.addEventListener("mousedown", updateProgress);
+
 audio.addEventListener("timeupdate", updateProgress);
-audio.addEventListener('ended', playNextSong);
+audio.addEventListener("ended", playNextSong);
 nextButton.addEventListener("click", playNextSong);
 nextButton.addEventListener("touch", playNextSong);
 previousButton.addEventListener("click", playPreviousSong);
