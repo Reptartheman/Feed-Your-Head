@@ -92,8 +92,6 @@ function playSong(id) {
     alert('Something went wrong');
   }
 
-
-  //setPlayerDisplay();
   audio.play();
 }
 
