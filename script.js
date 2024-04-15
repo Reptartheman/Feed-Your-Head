@@ -91,7 +91,7 @@ function playSong(id) {
   } else {
     alert('Something went wrong');
   }
-
+  setPlayerDisplay();
   audio.play();
 }
 
@@ -102,7 +102,7 @@ function setPlayerDisplay() {
   const currentTitle = userData?.currentSong?.title;
   const currentArtist = userData?.currentSong?.artist;
 
-  trackTitle.textContent = currentTitle ? currentTitle : "";
+  trackTitle.textContent = currentTitle ? `Now Playing: ${currentTitle} ` : "";
   trackArtist.textContent = currentArtist ? currentArtist : "";
 }
 
