@@ -287,3 +287,20 @@ nextButton.addEventListener("click", playNextSong);
 nextButton.addEventListener("touch", playNextSong);
 previousButton.addEventListener("click", playPreviousSong);
 previousButton.addEventListener("touch", playPreviousSong);
+
+// Listen for keydown event on the whole window
+window.addEventListener('keydown', (event) => {
+  if (event.code === 'Space') {
+      event.preventDefault();  // Prevent the default space bar action (page scrolling)
+      if (isPlaying) {
+          pauseSong();
+      } else {
+          if (userData?.currentSong === null) {
+              playSong(userData?.songs[0].id);  // Start playing the first song if no song is currently selected
+          } else {
+              playSong(userData?.currentSong.id);
+          }
+      }
+  }
+});
+

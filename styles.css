@@ -20,11 +20,9 @@ body {
   font-family: var(--main-font);
   font-weight: 400;
   font-style: normal;
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    rgba(30.7, 142.34, 35.16, 0.69) 0%,
-    rgb(164, 46, 224) 98.96%
-  );
+background-image: url('./assets/images/FYHBackground.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 ul {
@@ -139,13 +137,21 @@ p.list-footer {
 .content-container {
   display: flex;
   flex-direction: column;
-  width: 386px;
+  width: 420px;
   align-items: center;
   justify-content: center;
   gap: 10px;
   top: 148px;
   left: 2px;
+  background-color: #3c55a2da;
+  box-shadow: -2px 2px 10px 2px #bfbfbf;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  padding-bottom: 30px;
 }
+
+
+
 
 .vinyl {
   position: relative;
@@ -216,7 +222,7 @@ p.list-footer {
 
 
 footer {
-  margin-top: 70px;
+  margin-top: 20px;
 }
 
 .footer-img-container {
@@ -348,5 +354,12 @@ p.track-title {
     padding-bottom: var(--size-6);
   }
 
+  .grid-container {
+    gap: 0px;
+  }
+
+  .speaker > img {
+    display: none;
+  }
 
 }
