@@ -85,10 +85,6 @@ function playSong(id) {
     }
   });
 
-  const nowPlayingElement = document.createElement("li");
-  nowPlayingElement.textContent = "Now Playing: " + song.title;
-  nowPlayingElement.classList.add("now-playing");
-  navbarList.insertBefore(nowPlayingElement, navbarList.firstChild);
 
   for (let i = 0; i < vinyl.length; i++) {
     vinyl[i].style.animationPlayState = "running";
