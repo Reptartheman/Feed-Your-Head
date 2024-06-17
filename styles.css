@@ -39,7 +39,7 @@ ul {
 
 .navbar {
   gap: var(--size-30);
-  padding: var(--size-6) var(--size-16);
+  padding: var(--size-6) var(--size-10);
 }
 
 .nav-container {
@@ -51,12 +51,14 @@ ul {
   display: flex;
   align-items: center;
   gap: var(--size-20);
+
 }
 
 .navbar-toggler {
   outline: none;
-  background-color: transparent;
-  border: 1px solid transparent;
+  background-color: #3c55a2;
+  border: 2px solid #fff;
+  border-radius: 5px;
 }
 
 .nav-list {
@@ -78,18 +80,19 @@ div.img-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  bottom: 15px;
+  top: 20px;
 
 }
 
 div.img-container img {
-  width: 35%;
+  width: 60%;
 }
 
 .nav-list li {
   font-size: var(--size-26);
   padding: var(--size-16);
   cursor: pointer;
+  text-align: center;
 }
 
 .nav-list li.playing {
@@ -107,7 +110,8 @@ ul.nav-list li:nth-child(4) {
 p.list-footer {
   text-align: center;
   font-size: var(--size-16);
-  padding: var(--size-16);
+  padding: 0 var(--size-30) var(--size-30);
+  margin: 0;
 }
 
 .hamburger {
@@ -125,12 +129,12 @@ p.list-footer {
 
 [aria-expanded="true"] ~ div.nav-container {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  gap: var(--size-50);
   color: #fff;
   position: absolute;
-  right: 459px;
-  top: 86px;
+  right: 504px;
+  top: 60px;
   background-color: #4e1c75;
   width: 33%;
   height: 89vh;
@@ -156,7 +160,7 @@ p.list-footer {
   align-items: center;
   justify-content: space-evenly;
   gap: 10px;
-  background-color: #3c55a2;
+  background-color: #3c55a2e0;
   box-shadow: -2px 2px 10px 2px #bfbfbf;
   border: 1px solid #ffffff;
   border-radius: 5px;
@@ -164,7 +168,9 @@ p.list-footer {
   height: 89vh;
 }
 
-
+.vinyl-container {
+  display: flex;
+}
 
 
 .vinyl {
@@ -333,7 +339,7 @@ p.track-title {
   }
 }
 
-@media only screen and (min-width: 285px) and (max-width: 560px) {
+@media only screen and (min-width: 255px) and (max-width: 414px) {
   [aria-expanded="true"] ~ div.nav-container {
     z-index: 5;
     display: flex;
@@ -351,12 +357,44 @@ p.track-title {
   }
 
   .content-container {
-    width: 375px;
+    width: 93vw;
+    height: 92vh;
   }
 
-  .time-container {
-    gap: 250px;
+  .track-artist {
+    font-size: var(--size-20);
+    margin-bottom: 0px;
   }
+
+
+  .time-container {
+    gap: 50vw;
+  }
+
+  .vinyl {
+    position: relative;
+    width: 250px;
+    height: 240px;
+  }
+
+  .time {
+    font: var(--size-16);
+  }
+
+  .controls {
+    justify-content: space-evenly;
+  }
+
+  .play-button {
+    width: 70px;
+    height: 70px;
+  }
+
+  .controls-secondary {
+    width: 50px;
+    height: 50px;
+  }
+
 
   .nav-container h1 {
     font-size: var(--size-26);
@@ -371,18 +409,25 @@ p.track-title {
     text-align: center;
   }
 
+  footer {
+    margin-top: 0px;
+  }
+
+  .footer-img-container a > button {
+    width: 50px;
+    height: 50px;
+  }
+
+  .footer-img {
+    width: 60px;
+  }
+
   p.list-footer {
     margin: 0;
     padding-top: var(--size-10);
     padding-bottom: var(--size-6);
   }
 
-  .grid-container {
-    gap: 0px;
-  }
 
-  .speaker > img {
-    display: none;
-  }
 
 }
