@@ -361,6 +361,10 @@ div.img-container {
   top: 0%;
 }
 
+div.img-container img {
+  width: 63%;
+}
+
   .content-container {
     width: 93vw;
   }
@@ -399,18 +403,21 @@ div.img-container {
     height: 55px;
   }
 
+  .nav-list {
+    overflow: scroll;
+  }
+
 
   .nav-container h1 {
     font-size: var(--size-26);
   }
 
-  .nav-container img {
-    width: 50%;
-  }
+
 
   .nav-list li {
-    font-size: var(--size-20);
+    font-size: var(--size-16);
     text-align: center;
+    padding: var(--size-6);
   }
 
   footer {
@@ -430,6 +437,8 @@ div.img-container {
     margin: 0;
     padding-top: var(--size-10);
     padding-bottom: var(--size-6);
+    font-size: var(--size-10);
+    line-height: 13px;
   }
 
 
