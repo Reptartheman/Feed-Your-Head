@@ -254,7 +254,7 @@ function toggleNav() {
 }
 
 function playSelected() {
-  const songList = navbarList.querySelectorAll("li");
+  const songList = navbarList.querySelectorAll("li.song");
   const songArray = [];
   songList.forEach((li, index) => {
     songArray.push(li.textContent.trim());

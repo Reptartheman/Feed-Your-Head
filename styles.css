@@ -77,7 +77,9 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--size-10);
+  gap: var(--size-6);
+  position: relative;
+  top: 2%;
 }
 
 .nav-container h1 {
@@ -92,8 +94,6 @@ div.img-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 5%;
-
 }
 
 div.img-container img {
@@ -101,10 +101,13 @@ div.img-container img {
 }
 
 .nav-list li {
-  font-size: var(--size-26);
-  padding: var(--size-16);
-  cursor: pointer;
+  font-size: var(--size-20);
+  padding: var(--size-10);
   text-align: center;
+}
+
+li.song {
+  cursor: pointer;
 }
 
 .nav-list li.playing {
