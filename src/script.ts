@@ -58,7 +58,7 @@ const allSongs: Song[] = [
 
 let player = new Tone.Player(allSongs[0].src).toDestination();
 
-playButton.addEventListener("click", () => {
+/* playButton.addEventListener("click", () => {
   player.autostart = false;
   if (!isPlaying) {
     player.start();
@@ -70,4 +70,4 @@ playButton.addEventListener("click", () => {
     isPlaying = true;
   }
   player.start();
-});
+}); */
