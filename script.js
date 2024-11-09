@@ -270,33 +270,38 @@ function playSelected() {
 }
 
 playSelected();
-navButton.addEventListener("click", toggleNav);
-progressContainer.addEventListener("click", setProgress);
-progressContainer.addEventListener("mouseup", setProgress);
-progressContainer.addEventListener("mouseup", updateProgress);
-progressContainer.addEventListener("mousedown", setProgress);
-progressContainer.addEventListener("mousedown", updateProgress);
+function initializeEventListeners() {
+  navButton.addEventListener("click", toggleNav);
 
-audio.addEventListener("timeupdate", updateProgress);
-audio.addEventListener("ended", playNextSong);
-nextButton.addEventListener("click", playNextSong);
-nextButton.addEventListener("touch", playNextSong);
-previousButton.addEventListener("click", playPreviousSong);
-previousButton.addEventListener("touch", playPreviousSong);
+  ["click", "mouseup", "mousedown"].forEach(event => {
+      progressContainer.addEventListener(event, setProgress);
+      progressContainer.addEventListener(event, updateProgress);
+  });
 
-// Listen for keydown event on the whole window
+  audio.addEventListener("timeupdate", updateProgress);
+  audio.addEventListener("ended", playNextSong);
+
+  ["click", "touch"].forEach(event => {
+      nextButton.addEventListener(event, playNextSong);
+      previousButton.addEventListener(event, playPreviousSong);
+  });
+}
+
+initializeEventListeners();
+
+
+
 window.addEventListener('keydown', (event) => {
   if (event.code === 'Space') {
-      event.preventDefault();  // Prevent the default space bar action (page scrolling)
+      event.preventDefault();
       if (isPlaying) {
           pauseSong();
       } else {
           if (userData?.currentSong === null) {
-              playSong(userData?.songs[0].id);  // Start playing the first song if no song is currently selected
+              playSong(userData?.songs[0].id);
           } else {
               playSong(userData?.currentSong.id);
           }
       }
   }
 });
-

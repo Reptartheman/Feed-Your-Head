@@ -16,13 +16,15 @@
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   font-family: var(--main-font);
   font-weight: 400;
   font-style: normal;
-  background-image: url('./assets/images/FYHBackground.png');
+  background-image: url('./assets/images/FYHBackground.svg');
   background-repeat: no-repeat;
-  background-size: 120rem;
+  background-size: cover;
 }
 
 ul {
