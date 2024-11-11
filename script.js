@@ -14,21 +14,47 @@ const DOM = {
   progressContainer: document.getElementById("progress-container"),
   navbarList: document.querySelector(".nav-list"),
   hamburgerMenu: document.querySelector(".hamburger"),
+  navbarToggler: document.querySelector(".navbar-toggler"),
+  navContainer: document.getElementById("navContainer"),
   navButton: document.querySelector("button[aria-expanded]"),
   elapsedTimeContainer: document.getElementById("elapsed-time"),
   remainingTimeContainer: document.getElementById("remaining-time"),
 };
 
-
 const audio = new Audio();
 const allSongs = [
-  { id: 0, title: "Broken", artist: "Reptar, the Man", duration: "3:49", src: brokenAudioFile },
-  { id: 1, title: "Final Destination", artist: "Reptar, the Man", duration: "3:11", src: finalDestinationAudioFile },
-  { id: 2, title: "Blame", artist: "Reptar, the Man", duration: "3:55", src: blameAudioFile },
-  { id: 3, title: "Feed Your Head", artist: "Reptar, the Man", duration: "4:10", src: feedYourHeadAudioFile },
+  {
+    id: 0,
+    title: "Broken",
+    artist: "Reptar, the Man",
+    duration: "3:49",
+    src: brokenAudioFile,
+  },
+  {
+    id: 1,
+    title: "Final Destination",
+    artist: "Reptar, the Man",
+    duration: "3:11",
+    src: finalDestinationAudioFile,
+  },
+  {
+    id: 2,
+    title: "Blame",
+    artist: "Reptar, the Man",
+    duration: "3:55",
+    src: blameAudioFile,
+  },
+  {
+    id: 3,
+    title: "Feed Your Head",
+    artist: "Reptar, the Man",
+    duration: "4:10",
+    src: feedYourHeadAudioFile,
+  },
 ];
 
 const appState = {
+  isMenuOpen: false,
   isPlaying: false,
   userData: {
     songs: [...allSongs],
@@ -37,15 +63,15 @@ const appState = {
   },
 };
 
-
 function playSong(id) {
   const song = appState.userData.songs.find((song) => song.id === id);
   audio.src = song.src;
   audio.title = song.title;
 
-  audio.currentTime = appState.userData.currentSong?.id === song.id
-    ? appState.userData.songCurrentTime
-    : 0;
+  audio.currentTime =
+    appState.userData.currentSong?.id === song.id
+      ? appState.userData.songCurrentTime
+      : 0;
 
   appState.userData.currentSong = song;
   appState.isPlaying = true;
@@ -66,7 +92,8 @@ function updatePlayButton(isPlaying) {
 }
 
 function updateNowPlaying(selectedSongId) {
-  const existingNowPlayingElement = DOM.navbarList.querySelector(".now-playing");
+  const existingNowPlayingElement =
+    DOM.navbarList.querySelector(".now-playing");
   if (existingNowPlayingElement) existingNowPlayingElement.remove();
   const songList = DOM.navbarList.querySelectorAll("li");
   songList.forEach((li, index) => {
@@ -76,33 +103,30 @@ function updateNowPlaying(selectedSongId) {
 
 function pauseSong() {
   appState.userData.songCurrentTime = audio.currentTime;
-
   appState.isPlaying = false;
-
   updatePlayButton(false);
-
   audio.pause();
 }
 
 function playNextSong() {
-  const currentSongIndex = appState.userData.songs.indexOf(appState.userData.currentSong);
-  
+  const currentSongIndex = appState.userData.songs.indexOf(
+    appState.userData.currentSong
+  );
   const nextSongIndex = (currentSongIndex + 1) % appState.userData.songs.length;
-  
   playSong(appState.userData.songs[nextSongIndex].id);
 }
 
-
 function playPreviousSong() {
+  const currentSongIndex = appState.userData.songs.indexOf(
+    appState.userData.currentSong
+  );
 
-  const currentSongIndex = appState.userData.songs.indexOf(appState.userData.currentSong);
-  
-  const previousSongIndex = (currentSongIndex - 1 + appState.userData.songs.length) % appState.userData.songs.length;
+  const previousSongIndex =
+    (currentSongIndex - 1 + appState.userData.songs.length) %
+    appState.userData.songs.length;
 
   playSong(appState.userData.songs[previousSongIndex].id);
 }
-
-
 
 function setPlayerDisplay() {
   const trackTitle = document.getElementById("title");
@@ -115,11 +139,6 @@ function setPlayerDisplay() {
   trackArtist.textContent = currentArtist ? currentArtist : "";
 }
 
-
-
-
-
-
 function updateProgress(e) {
   const { duration, currentTime } = e.srcElement;
 
@@ -129,15 +148,18 @@ function updateProgress(e) {
   DOM.progress.style.width = `${progressPercent}%`;
 
   DOM.elapsedTimeContainer.textContent = formatTime(currentTime);
-  DOM.remainingTimeContainer.textContent = `-${formatTime(duration - currentTime)}`;
+  DOM.remainingTimeContainer.textContent = `-${formatTime(
+    duration - currentTime
+  )}`;
 }
 
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, "0");
+  const remainingSeconds = Math.floor(seconds % 60)
+    .toString()
+    .padStart(2, "0");
   return `${minutes}:${remainingSeconds}`;
 }
-
 
 function setProgress(e) {
   if (!isFinite(audio.duration) || audio.duration === 0) {
@@ -145,41 +167,44 @@ function setProgress(e) {
     return;
   }
 
-  const width = this.clientWidth
+  const width = this.clientWidth;
   const clickX = e.offsetX;
-  const duration = audio.duration
+  const duration = audio.duration;
 
   const newTime = (clickX / width) * duration;
   if (isFinite(newTime)) {
     audio.currentTime = newTime;
   }
-
 }
-
-
-
-
 
 DOM.playButton.addEventListener("click", () => {
   if (appState.isPlaying) {
     pauseSong();
-  } else if (appState.userData?.currentSong === null) {
-    playSong(appState.userData?.songs[0].id);
+  } else if (appState.userData.currentSong === null) {
+    playSong(appState.userData.songs[0].id);
   } else {
-    playSong(appState.userData?.currentSong.id);
+    playSong(appState.userData.currentSong.id);
   }
 });
 
 function toggleNav() {
-  const $navbarToggler = document.querySelector(".navbar-toggler");
-
-  const expanded =
-    $navbarToggler.getAttribute("aria-expanded") === "true" || false;
-  $navbarToggler.setAttribute("aria-expanded", !expanded);
-  if (expanded) {
-    DOM.hamburgerMenu.innerHTML = `&#9776;`;
+  const expanded = DOM.navbarToggler.getAttribute("aria-expanded") === "true";
+  const newExpandedState = !expanded;
+  DOM.navbarToggler.setAttribute("aria-expanded", newExpandedState);
+  DOM.navbarToggler.classList.toggle("expanded", newExpandedState);
+  if (newExpandedState) {
+    document.addEventListener("click", handleOutsideClick);
   } else {
-    DOM.hamburgerMenu.innerHTML = `&#88;`;
+    document.removeEventListener("click", handleOutsideClick);
+  }
+}
+
+function handleOutsideClick(event) {
+  if (
+    !DOM.navbarToggler.contains(event.target) &&
+    !DOM.navContainer.contains(event.target)
+  ) {
+    toggleNav();
   }
 }
 
@@ -200,38 +225,39 @@ function playSelected() {
 }
 
 playSelected();
+
 function initializeEventListeners() {
   const mouseEvents = ["mousedown", "mouseup", "click"];
 
-  mouseEvents.forEach(event => {
-    DOM.progressContainer.addEventListener(event, setProgress)
-    DOM.progressContainer.addEventListener(event, updateProgress)
-  })
-
-  DOM.navButton.addEventListener("click", toggleNav);
+  mouseEvents.forEach((event) => {
+    DOM.progressContainer.addEventListener(event, setProgress);
+    DOM.progressContainer.addEventListener(event, updateProgress);
+  });
   audio.addEventListener("timeupdate", updateProgress);
   audio.addEventListener("ended", playNextSong);
 
-  ["click", "touch"].forEach(event => {
+  ["click", "touch"].forEach((event) => {
+    DOM.navButton.addEventListener(event, toggleNav);
     DOM.nextButton.addEventListener(event, playNextSong);
     DOM.previousButton.addEventListener(event, playPreviousSong);
   });
 }
 
-
-initializeEventListeners();
-
-window.addEventListener('keydown', (event) => {
-  if (event.code === 'Space') {
-      event.preventDefault();
-      if (appState.isPlaying) {
-          pauseSong();
+window.addEventListener("keydown", (event) => {
+  if (event.code === "Space") {
+    event.preventDefault();
+    if (appState.isPlaying) {
+      pauseSong();
+    } else {
+      if (appState.userData?.currentSong === null) {
+        playSong(appState.userData?.songs[0].id);
       } else {
-          if (appState.userData?.currentSong === null) {
-              playSong(appState.userData?.songs[0].id);
-          } else {
-              playSong(appState.userData?.currentSong.id);
-          }
+        playSong(appState.userData?.currentSong.id);
       }
+    }
   }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeEventListeners();
 });
