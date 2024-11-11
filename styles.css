@@ -132,6 +132,15 @@ p.list-footer {
   line-height: 25px;
 }
 
+.hamburger::before {
+  content: "\2630";
+}
+
+.navbar-toggler.expanded .hamburger::before {
+  content: "X";
+}
+
+
 .hamburger {
   font-family: var(--main-font);
   font-weight: 400;

@@ -14,6 +14,8 @@ const DOM = {
   progressContainer: document.getElementById("progress-container"),
   navbarList: document.querySelector(".nav-list"),
   hamburgerMenu: document.querySelector(".hamburger"),
+  navbarToggler: document.querySelector(".navbar-toggler"),
+  navContainer: document.getElementById("navContainer"),
   navButton: document.querySelector("button[aria-expanded]"),
   elapsedTimeContainer: document.getElementById("elapsed-time"),
   remainingTimeContainer: document.getElementById("remaining-time"),
@@ -101,11 +103,8 @@ function updateNowPlaying(selectedSongId) {
 
 function pauseSong() {
   appState.userData.songCurrentTime = audio.currentTime;
-
   appState.isPlaying = false;
-
   updatePlayButton(false);
-
   audio.pause();
 }
 
@@ -113,9 +112,7 @@ function playNextSong() {
   const currentSongIndex = appState.userData.songs.indexOf(
     appState.userData.currentSong
   );
-
   const nextSongIndex = (currentSongIndex + 1) % appState.userData.songs.length;
-
   playSong(appState.userData.songs[nextSongIndex].id);
 }
 
@@ -191,16 +188,25 @@ DOM.playButton.addEventListener("click", () => {
 });
 
 function toggleNav() {
-  const navbarToggler = document.querySelector(".navbar-toggler");
-  const expanded = navbarToggler.getAttribute("aria-expanded") === "true";
-  navbarToggler.setAttribute("aria-expanded", !expanded);
-  updateHamburgerIcon(!expanded);
+  const expanded = DOM.navbarToggler.getAttribute("aria-expanded") === "true";
+  const newExpandedState = !expanded;
+  DOM.navbarToggler.setAttribute("aria-expanded", newExpandedState);
+  DOM.navbarToggler.classList.toggle("expanded", newExpandedState);
+  if (newExpandedState) {
+    document.addEventListener("click", handleOutsideClick);
+  } else {
+    document.removeEventListener("click", handleOutsideClick);
+  }
 }
 
-function updateHamburgerIcon(isExpanded) {
-  DOM.hamburgerMenu.innerHTML = isExpanded ? `&#88;` : `&#9776;`;
+function handleOutsideClick(event) {
+  if (
+    !DOM.navbarToggler.contains(event.target) &&
+    !DOM.navContainer.contains(event.target)
+  ) {
+    toggleNav();
+  }
 }
-
 
 function playSelected() {
   const songList = DOM.navbarList.querySelectorAll("li.song");
@@ -227,18 +233,15 @@ function initializeEventListeners() {
     DOM.progressContainer.addEventListener(event, setProgress);
     DOM.progressContainer.addEventListener(event, updateProgress);
   });
-
-  DOM.navButton.addEventListener("click", toggleNav);
   audio.addEventListener("timeupdate", updateProgress);
   audio.addEventListener("ended", playNextSong);
 
   ["click", "touch"].forEach((event) => {
+    DOM.navButton.addEventListener(event, toggleNav);
     DOM.nextButton.addEventListener(event, playNextSong);
     DOM.previousButton.addEventListener(event, playPreviousSong);
   });
 }
-
-initializeEventListeners();
 
 window.addEventListener("keydown", (event) => {
   if (event.code === "Space") {
@@ -253,4 +256,8 @@ window.addEventListener("keydown", (event) => {
       }
     }
   }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeEventListeners();
 });
