@@ -19,6 +19,7 @@ const DOM = {
   navButton: document.querySelector("button[aria-expanded]"),
   elapsedTimeContainer: document.getElementById("elapsed-time"),
   remainingTimeContainer: document.getElementById("remaining-time"),
+  modalFooter: document.getElementById("modalFooter"),
 };
 
 const audio = new Audio();
@@ -198,6 +199,25 @@ function toggleNav() {
     document.removeEventListener("click", handleOutsideClick);
   }
 }
+
+
+let isFlipped = false;
+
+function flipCard() {
+  const card = document.getElementById('card');
+  if (!isFlipped) {
+    card.style.transform = 'rotateY(180deg)'
+  } else {
+    card.style.transform = 'rotateY(0deg)'
+  }
+
+ isFlipped = !isFlipped 
+}
+
+document.querySelector('.read-more').addEventListener('click', flipCard);
+document.querySelector('.go-back').addEventListener('click', flipCard);
+
+
 
 function handleOutsideClick(event) {
   if (

@@ -79,7 +79,6 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--size-6);
   position: relative;
   top: 2%;
 }
@@ -124,13 +123,18 @@ ul.nav-list li:nth-child(4) {
   font-size: var(--size-16);
 }
 
-p.list-footer {
-  text-align: center;
-  font-size: var(--size-16);
-  padding: 0 var(--size-30) var(--size-30);
-  margin: 0;
-  line-height: 25px;
+
+footer.modal-footer {
+  display: inline-flex;
+  align-self: flex-end;
+  margin-top: 30px;
+  margin-right: 30px;
 }
+
+footer.modal-footer span {
+  cursor: pointer;
+}
+
 
 .hamburger::before {
   content: "\2630";
@@ -155,21 +159,45 @@ p.list-footer {
 }
 
 [aria-expanded="true"] ~ div.nav-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   color: #fff;
   position: absolute;
   right: 37%;
   top: 60px;
-  background-color: #4e1c75;
   width: 450px;
   height: 92vh;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+.card {
   box-shadow: -2px 2px 10px 2px #bfbfbf;
   border: 1px solid #ffffff;
   border-radius: 5px;
-  z-index: 10;
+  background-color: #4e1c75;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.8s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+
+.front-content, .back-content {
+  backface-visibility: hidden;
+}
+
+.front-content {
+  transform: rotateY(0deg);
+}
+
+.back-content {
+  transform: rotateY(180deg);
+}
+
+
 
 .container {
   display: flex;
