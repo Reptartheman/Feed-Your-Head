@@ -20,6 +20,8 @@ const DOM = {
   elapsedTimeContainer: document.getElementById("elapsed-time"),
   remainingTimeContainer: document.getElementById("remaining-time"),
   modalFooter: document.getElementById("modalFooter"),
+  frontContent: document.getElementById("frontContent"),
+  backContent: document.getElementById("backContent"),
 };
 
 const audio = new Audio();
@@ -206,12 +208,16 @@ let isFlipped = false;
 function flipCard() {
   const card = document.getElementById('card');
   if (!isFlipped) {
-    card.style.transform = 'rotateY(180deg)'
+    card.style.transform = 'rotateY(180deg)';
+    DOM.backContent.style.display = 'grid'; 
+    DOM.frontContent.style.display = 'none';
   } else {
-    card.style.transform = 'rotateY(0deg)'
+    card.style.transform = 'rotateY(0deg)';
+    DOM.frontContent.style.display = 'grid';
+    DOM.backContent.style.display = 'none';
   }
-
- isFlipped = !isFlipped 
+  
+ isFlipped = !isFlipped
 }
 
 document.querySelector('.read-more').addEventListener('click', flipCard);

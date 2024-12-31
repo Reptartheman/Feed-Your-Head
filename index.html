@@ -19,55 +19,67 @@
         </button>
         <div class="nav-container from-back" id="navContainer">
           <div id="card" class="card">
-            <div class="front-content">
-          <div class="img-container" id="artwork">
-            <img src="./assets/images/FYH8.png" alt="album art" />
+            <div id="frontContent" class="front-content">
+              <div class="img-container" id="artwork">
+                <img src="./assets/images/FYH8.png" alt="album art" />
+              </div>
+
+              <ul class="nav-list">
+                <li class="list-item song" id="broken">Track 1: BROKEN</li>
+                <li class="list-item song" id="finalDestination">
+                  Track 2: FINAL DESTINATION
+                </li>
+                <li class="list-item song" id="blame">
+                  Track 3: BLAME <br />
+                  <span>FT: GREG RIVERS & JOEY BATTS</span>
+                </li>
+                <li class="list-item song" id="feedYourHead">
+                  Track 4: FEED YOUR HEAD <br />
+                  <span>FT: GANNON FERRELL </span>
+                </li>
+              </ul>
+              <footer class="modal-footer">
+                <img src="./assets/images/Parental-Advisory.png" alt="parental-advisory" class="parental-advisory">
+                <div id="modalFooter" class="read-more">
+                  
+                  <img class="page-toggle" src="./assets//images/FORWARD_C.svg" alt="next_page" />
+                </div>
+              </footer>
+            </div>
+            <div id="backContent" class="back-content">
+              <ul class="nav-list modal-back">
+                <li class="list-item">Produced by: Reptar, the Man</li>
+                <li class="list-item">Written by: Reptar, the Man</li>
+                <li class="list-item">Mixed & Mastered by: Reptar, the Man</li>
+                <li class="list-item">Artwork by: DALL-E & Reptar, the Man.</li>
+                <li class="list-item">
+                  Music player built by: Reptar, the Man
+                </li>
+              </ul>
+              <p class="list-item message">
+                Interested in a custom music player for your next release? Send Jeff a message.
+              </p>
+              <footer class="modal-footer">
+                <div id="modalFooter" class="go-back">
+                  <img class="page-toggle" src="./assets//images/BACK_C.svg" alt="previous_page" />
+                </div>
+              </footer>
+            </div>
           </div>
-          
-          <ul class="nav-list">
-            <li class="list-item song" id="broken">Track 1: BROKEN</li>
-            <li class="list-item song" id="finalDestination">Track 2: FINAL DESTINATION</li>
-            <li class="list-item song" id="blame">
-              Track 3: BLAME <br />
-              <span>FT: GREG RIVERS & JOEY BATTS</span>
-            </li>
-            <li class="list-item song" id="feedYourHead">Track 4: FEED YOUR HEAD <br />
-              <span>FT: GANNON FERRELL </span>
-            </li>
-            
-          </ul>
-          <footer class="modal-footer">
-            <span id="modalFooter" class="read-more">READ MORE</span>
-          </footer>
-        </div>
-        <div class="back-content">
-          <ul class="modal-back">
-            <li class="list-item">Produced by: Reptar, the Man</li>
-            <li class="list-item">Written by: Reptar, the Man</li>
-            <li class="list-item">Mixed & Mastered by: Reptar, the Man</li>
-            <li class="list-item">Artwork by: DALL-E & Reptar, the Man.</li>
-            <li class="list-item">Music player built by: Reptar, the Man</li>
-          </ul>
-          <footer class="modal-footer">
-            <span id="modalFooter" class="go-back"> GO BACK</span>
-          </footer>
-        </div>
-          
-        </div>
         </div>
       </nav>
     </header>
     <main class="container">
       <div class="content-container">
         <div class="vinyl-area">
-        <div class="info-container">
-          <p id="artist" class="track-artist">Reptar, the Man</p>
-          <p id="title" class="track-title"></p>
+          <div class="info-container">
+            <p id="artist" class="track-artist">Reptar, the Man</p>
+            <p id="title" class="track-title"></p>
+          </div>
+          <div class="vinyl-container">
+            <img class="vinyl" src="./assets/images/FYHvinylNEW.svg" />
+          </div>
         </div>
-        <div class="vinyl-container">
-          <img class="vinyl" src="./assets/images/FYHvinylNEW.svg" />
-        </div>
-      </div>
         <div class="controls-area">
           <div class="progress-container" id="progress-container">
             <div class="progress" id="progress"></div>
@@ -87,7 +99,7 @@
               <img src="./assets/images/Next.svg" alt="next" />
             </div>
           </div>
-          <footer>
+          <footer class="player-footer">
             <div class="footer-img-container">
               <a href="https://www.instagram.com/reptartheman/" target="_blank">
                 <button>

@@ -22,7 +22,7 @@ body {
   font-family: var(--main-font);
   font-weight: 400;
   font-style: normal;
-  background-image: url('./assets/images/FYHBackground.svg');
+  background-image: url("./assets/images/FYHBackground.svg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -35,11 +35,11 @@ ul {
 
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
@@ -54,33 +54,36 @@ ul {
   padding: var(--size-6) var(--size-10);
 }
 
-.nav-container {
+/* .nav-container {
   display: flex;
   gap: var(--size-50);
-}
+} */
 
 .navbar-nav {
   display: flex;
   align-items: center;
   gap: var(--size-20);
-
 }
 
 .navbar-toggler {
   outline: none;
-    background-color: #3c55a2;
-    border: 2px solid #fff;
-    border-radius: 5px;
-    z-index: 10;
-    position: relative;
+  background-color: #3c55a2;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  z-index: 10;
+  position: relative;
 }
 
-.nav-list {
+.nav-list,
+.modal-back {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  position: relative;
-  top: 2%;
+  justify-content: space-evenly;
+}
+
+.modal-back {
+  grid-row: 1 / span 8;
+  gap: var(--size-20);
 }
 
 .nav-container h1 {
@@ -95,10 +98,11 @@ div.img-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: end;
 }
 
 div.img-container img {
-  width: 60%;
+  width: 75%;
 }
 
 .nav-list li {
@@ -123,18 +127,43 @@ ul.nav-list li:nth-child(4) {
   font-size: var(--size-16);
 }
 
-
 footer.modal-footer {
-  display: inline-flex;
-  align-self: flex-end;
-  margin-top: 30px;
-  margin-right: 30px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
 }
 
-footer.modal-footer span {
+footer.modal-footer div {
+  justify-self: center;
+  background-color: transparent;
+  border-radius: 50%;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
 }
 
+footer.modal-footer div:hover {
+  background-color: #7f17ca;
+}
+
+footer.modal-footer div {
+  grid-column: 4 / span 1;
+}
+footer.modal-footer div.go-back {
+  grid-column: 1 / span 1;
+}
+
+img.page-toggle {
+  width: 100%;
+}
+
+img.parental-advisory {
+  grid-column: 1 / span 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .hamburger::before {
   content: "\2630";
@@ -143,7 +172,6 @@ footer.modal-footer span {
 .navbar-toggler.expanded .hamburger::before {
   content: "X";
 }
-
 
 .hamburger {
   font-family: var(--main-font);
@@ -160,8 +188,8 @@ footer.modal-footer span {
 
 [aria-expanded="true"] ~ div.nav-container {
   color: #fff;
-  position: absolute;
-  right: 37%;
+  position: fixed;
+  right: 34%;
   top: 60px;
   width: 450px;
   height: 92vh;
@@ -179,25 +207,34 @@ footer.modal-footer span {
   height: 100%;
   transform-style: preserve-3d;
   transition: all 0.8s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  align-content: center;
 }
 
-.front-content, .back-content {
+.front-content,
+.back-content {
+  width: 100%;
+  height: 100%;
   backface-visibility: hidden;
+  gap: 3rem;
+  display: grid;
 }
 
 .front-content {
+  grid-template-rows: repeat(2, 1fr);
   transform: rotateY(0deg);
 }
 
 .back-content {
+  display: none;
   transform: rotateY(180deg);
 }
 
-
+p.list-item .message {
+  font-size: var(--size-16);
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
 
 .container {
   display: flex;
@@ -228,7 +265,8 @@ footer.modal-footer span {
   height: 270px;
 }
 
-.vinyl-area, .vinyl-container {
+.vinyl-area,
+.vinyl-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -248,7 +286,6 @@ footer.modal-footer span {
   display: flex;
   gap: 300px;
 }
-
 
 .progress-container {
   background: #fff;
@@ -306,8 +343,7 @@ footer.modal-footer span {
   justify-content: center;
 }
 
-
-footer {
+.player-footer {
   margin-top: 20px;
 }
 
@@ -339,7 +375,6 @@ footer {
   background-color: #4e1c75;
 }
 
-
 .previous,
 .next {
   background-color: #7f17ca;
@@ -348,7 +383,6 @@ footer {
 .next:hover {
   background-color: #4e1c75;
 }
-
 
 .footer-p {
   font-family: var(--main-font);
@@ -407,9 +441,9 @@ p.track-title {
 
 @media only screen and (max-width: 1080px) and (orientation: landscape) {
   div.content-container {
-    display: grid; 
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'vinyl-area controls-area';
+    grid-template-areas: "vinyl-area controls-area";
     width: 90%;
     height: clamp(75vh, 87vh, 90vh);
   }
@@ -418,7 +452,7 @@ p.track-title {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'img-container list-footer';
+    grid-template-areas: "img-container list-footer";
     position: absolute;
     right: 16px;
     top: 30px;
@@ -448,15 +482,10 @@ p.track-title {
     top: 20px;
   }
 
-  
-
-
   .nav-container h1 {
     font-size: var(--size-26);
     margin: 10px 0;
   }
-
-
 
   .nav-list li.list-item {
     font-size: 14px;
@@ -507,8 +536,6 @@ p.track-title {
   div.controls {
     order: 1;
   }
-
-
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1024px) {
@@ -590,13 +617,13 @@ p.track-title {
     justify-content: space-evenly;
   }
 
-div.img-container {
-  top: 0%;
-}
+  div.img-container {
+    top: 0%;
+  }
 
-div.img-container img {
-  width: 63%;
-}
+  div.img-container img {
+    width: 63%;
+  }
 
   .content-container {
     width: 93vw;
@@ -606,7 +633,6 @@ div.img-container img {
     font-size: var(--size-20);
     margin-bottom: 0px;
   }
-
 
   .time-container {
     gap: 50vw;
@@ -640,12 +666,9 @@ div.img-container img {
     overflow: scroll;
   }
 
-
   .nav-container h1 {
     font-size: var(--size-26);
   }
-
-
 
   .nav-list li {
     font-size: var(--size-20);
@@ -672,7 +695,4 @@ div.img-container img {
     font-size: var(--size-16);
     line-height: 20px;
   }
-
-
-
 }
